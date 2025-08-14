@@ -29,3 +29,11 @@ button:hover {
   background: #422476;
   color: white;
 }
+
+.nenhum-voto{
+   /* color: #d3d3d3; */
+   color: #d0d0d0;
+   font-style: italic;
+}
+
+

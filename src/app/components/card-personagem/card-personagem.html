@@ -1,6 +1,12 @@
 <div class="card">
   <img [src]="imagem()" [alt]="nome()" />
   <h3>{{ nome() }}</h3>
+
+  @if (totalVotos() > 0) {
   <p>Votos: {{ totalVotos() }}</p>
-  <button (click)="votou.emit()">Votar</button>
+  } @else {
+  <p class="nenhum-voto">Nenhum voto ainda</p>
+  }
+
+  <button (click)="votou.emit(id())">Votar</button>
 </div>

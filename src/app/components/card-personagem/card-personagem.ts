@@ -9,7 +9,8 @@ import { Component, input, output } from '@angular/core';
 export class CardPersonagem {
   nome = input<string>();
   imagem = input<string>();
-  totalVotos = input<number>();
+  totalVotos = input.required<number>();
+  id = input.required<number>();
 
-  votou = output();
+  votou = output<number>();
 }
