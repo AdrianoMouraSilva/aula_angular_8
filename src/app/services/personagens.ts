@@ -12,7 +12,8 @@ interface IPersonagens {
 })
 
 export class Personagens {
-  listarPersonagens: IPersonagens[] = [
+  // private
+  private listarPersonagens: IPersonagens[] = [
     { id: 1, nome: 'Sanchez', imagem: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', votos: 1 },
     { id: 2, nome: 'Morty Smith', imagem: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', votos: 3 },
     { id: 3, nome: 'Summer Smith', imagem: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', votos: 4 },
@@ -20,11 +21,30 @@ export class Personagens {
     { id: 5, nome: 'Jerry Smith', imagem: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg', votos: 0 },
   ];
 
-  // constructor(private votacaoService: VotacaoService) { }
 
   getPersonagens() {
     return this.listarPersonagens;
-    // this.qtdVotosPersonagem++;
   }
+
+  adicionarVoto(idDoPersonagem: number){
+    const personagem_1 = this.listarPersonagens.find(
+      (itemLista, index, listarPersonagens) => itemLista.id === idDoPersonagem
+    )
+    personagem_1!.votos++;
+
+  }
+
+  voltarPersonagem(id: number){
+    const personagem_2 = this.listarPersonagens.find(
+      (itemLista) => itemLista.id === id
+    )
+    personagem_2!.votos++;
+
+  }
+
+
+  
+
+  
 
 }

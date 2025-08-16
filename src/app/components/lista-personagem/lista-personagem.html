@@ -10,14 +10,11 @@
 
   <!-- @for (personagem of listarPersonagens; track $index ) { -->
   @for (personagem of listarPersonagens; track personagem.id) {
-  <app-card-personagem 
-    [nome]="personagem.nome"
-    [imagem]="personagem.imagem" 
-    [totalVotos]="personagem.votos"
-    [id]="personagem.id"
-    (votou)="incremetarVotoPersonagem($event)" 
-    
-    />
+  <app-card-personagem [nome]="personagem.nome" [imagem]="personagem.imagem" [totalVotos]="personagem.votos"
+    [id]="personagem.id" (votou)="incremetarVotoPersonagem($event)" /> }
+  @empty {
+  <p>Nenhuma pensogagem disponivel</p>
+
   }
 
 </section>

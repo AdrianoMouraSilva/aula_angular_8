@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CardPersonagem } from '../card-personagem/card-personagem';
 import { Personagens } from '../../services/personagens';
 
@@ -16,13 +16,25 @@ interface IPersonagens {
   templateUrl: './lista-personagem.html',
   styleUrl: './lista-personagem.css',
 })
-export class ListaPersonagem {
+export class ListaPersonagem implements OnInit, OnDestroy {
 
   listarPersonagens: IPersonagens[] = [];
 
-  constructor(private personagens: Personagens) { 
+  constructor(private personagens: Personagens) {
+    // this.listarPersonagens = this.personagens.getPersonagens();
+  }
+
+  ngOnInit() {
+    // alert('OnInit');
+    console.log('OnInit');
+
     this.listarPersonagens = this.personagens.getPersonagens();
-  } 
+  }
+
+  ngOnDestroy() {
+    alert('ngOnDestroy');
+    // throw new Error('Method not implemented.');
+  }
 
   // Criando um objeto usando a interface
   // https://rickandmortyapi.com/api/character/3
@@ -42,14 +54,15 @@ export class ListaPersonagem {
   //   this.qtdVotosPersonagem++;
   // }
 
+  // incremetarVotoPersonagem(id: number) {
+  //   const personagem_1 = this.listarPersonagens.find(
+  //     (itemLista, index, listarPersonagens) => itemLista.id === id
+  //   )
+  //   personagem_1!.votos++;
+  //   // this.listarPersonagens[i].votos++;
+  // }
 
   incremetarVotoPersonagem(id: number) {
-    const personagem_1 = this.listarPersonagens.find(
-      (itemLista, index, listarPersonagens) => itemLista.id === id
-    )
-
-    personagem_1!.votos++;
-
-    // this.listarPersonagens[i].votos++;
+    this.personagens.voltarPersonagem(id);
   }
 }
