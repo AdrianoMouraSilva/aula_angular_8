@@ -28,7 +28,18 @@ export class ListaPersonagem implements OnInit, OnDestroy {
     // alert('OnInit');
     console.log('OnInit');
 
-    this.listarPersonagens = this.personagens.getPersonagens();
+    // this.listarPersonagens = this.personagens.getPersonagens();
+
+    this.personagens.getDados().subscribe(
+      personagens => {
+        this.listarPersonagens = personagens
+      }
+    )
+
+    console.log(this.personagens.getDados().subscribe({
+      // next: (res) => this.IPersonagens = res,
+      //error: (err) => console.error('Erro ao buscar dados', err)
+    }));
   }
 
   ngOnDestroy() {
