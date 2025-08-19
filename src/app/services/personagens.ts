@@ -17,16 +17,37 @@ interface IPersonagens {
 
 export class Personagens {
 
-  private baseUrl = 'http://localhost:3000/personagens'; // 🔗 URL da sua API
+  private baseUrl:string = 'http://localhost:3000'; // 🔗 URL da sua API
 
-  constructor(private http: HttpClient) {
+  // constructor(private http: HttpClient) {
+
+  // }
+
+  constructor(private httpClient: HttpClient) {
 
   }
 
   getDados(): Observable<IPersonagens[]> {
-    return this.http.get<IPersonagens[]>(`${this.baseUrl}`)
-      //.pipe(catchError(this.handleError));
+    return this.httpClient.get<IPersonagens[]>(`${this.baseUrl}/personagens`);
   }
+
+   voltarPersonagem(id: number, totalVotos: number) {
+
+    // Body: { "votos": NOVO_VALOR }
+
+    return this.httpClient.patch<IPersonagens[]>(`${this.baseUrl}/personagens/${id}`,{votos:totalVotos + 1});
+
+    // const personagem = this.listarPersonagens.find(
+    //   (itemLista, index, listarPersonagens) => itemLista.id === idDoPersonagem
+    // )
+    // personagem!.votos++;
+
+  }
+
+  // getDados(): Observable<IPersonagens[]> {
+  //   return this.http.get<IPersonagens[]>(`${this.baseUrl}/personagens`)
+
+  // }
 
   // private
   private listarPersonagens: IPersonagens[] = [
@@ -42,21 +63,54 @@ export class Personagens {
   //   return this.listarPersonagens;
   // }
 
-  adicionarVoto(idDoPersonagem: number) {
-    const personagem_1 = this.listarPersonagens.find(
-      (itemLista, index, listarPersonagens) => itemLista.id === idDoPersonagem
-    )
-    personagem_1!.votos++;
+  // adicionarVoto(idDoPersonagem: number) {
+  //   const personagem_1 = this.listarPersonagens.find(
+  //     (itemLista, index, listarPersonagens) => itemLista.id === idDoPersonagem
+  //   )
+  //   personagem_1!.votos++;
 
-  }
+  // }
 
-  voltarPersonagem(id: number) {
-    const personagem_2 = this.listarPersonagens.find(
-      (itemLista) => itemLista.id === id
-    )
-    personagem_2!.votos++;
+  // voltarPersonagem(id: number) {
+  //   const personagem_2 = this.listarPersonagens.find(
+  //     (itemLista) => itemLista.id === id
+  //   )
+  //   personagem_2!.votos++;
 
-  }
+  // }
+
+
+  // voltarPersonagem(id: number) {
+
+  //   alert("ID = " + id);
+
+
+  //   fetch(`http://localhost:3000/personagens/${id}`, {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ votos: 2 })
+  //   })
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Erro ao atualizar os votos');
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       console.log('Personagem atualizado:', data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Erro:', error);
+  //     });
+
+  //   // const personagem_2 = this.listarPersonagens.find(
+  //   //   (itemLista) => itemLista.id === id
+  //   // )
+  //   // personagem_2!.votos++;
+
+  // }
 
 
 

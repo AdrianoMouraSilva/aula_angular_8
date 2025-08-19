@@ -8,5 +8,7 @@
   <p class="nenhum-voto">Nenhum voto ainda</p>
   }
 
-  <button (click)="votou.emit(id())">Votar</button>
+
+
+  <button (click)="votou.emit({id:id(),totalVotos:totalVotos()})">Votar</button>
 </div>

@@ -24,27 +24,46 @@ export class ListaPersonagem implements OnInit, OnDestroy {
     // this.listarPersonagens = this.personagens.getPersonagens();
   }
 
+  carregarPersonagem() {
+    this.personagens.getDados().subscribe(
+      getPersonagens => {
+        this.listarPersonagens = getPersonagens
+      }
+    )
+  }
+
   ngOnInit() {
     // alert('OnInit');
-    console.log('OnInit');
+    // console.log('OnInit');
 
     // this.listarPersonagens = this.personagens.getPersonagens();
 
-    this.personagens.getDados().subscribe(
-      personagens => {
-        this.listarPersonagens = personagens
-      }
-    )
+    // this.personagens.getDados().subscribe(
+    //   personagens => {
+    //     this.listarPersonagens = personagens
+    //   }
+    // )
+    this.carregarPersonagem();
 
-    console.log(this.personagens.getDados().subscribe({
-      // next: (res) => this.IPersonagens = res,
-      //error: (err) => console.error('Erro ao buscar dados', err)
-    }));
   }
 
   ngOnDestroy() {
     alert('ngOnDestroy');
     // throw new Error('Method not implemented.');
+  }
+
+  adicionarVoto(idDoPersonagem: number) {
+    const personagem_1 = this.listarPersonagens.find(
+      (itemLista, index, listarPersonagens) => itemLista.id === idDoPersonagem
+    )
+    personagem_1!.votos++;
+
+  }
+
+  incremetarVotoPersonagem(evento: {id: number; totalVotos: number}) {
+    this.personagens.voltarPersonagem(evento.id, evento.totalVotos).subscribe((resposta) => {
+      this.carregarPersonagem();
+    });
   }
 
   // Criando um objeto usando a interface
@@ -73,7 +92,5 @@ export class ListaPersonagem implements OnInit, OnDestroy {
   //   // this.listarPersonagens[i].votos++;
   // }
 
-  incremetarVotoPersonagem(id: number) {
-    this.personagens.voltarPersonagem(id);
-  }
+
 }
