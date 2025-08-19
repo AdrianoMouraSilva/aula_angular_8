@@ -17,7 +17,7 @@ interface IPersonagens {
 
 export class Personagens {
 
-  private baseUrl:string = 'http://localhost:3000'; // 🔗 URL da sua API
+  private baseUrl: string = 'http://localhost:3000'; // 🔗 URL da sua API
 
   // constructor(private http: HttpClient) {
 
@@ -31,16 +31,32 @@ export class Personagens {
     return this.httpClient.get<IPersonagens[]>(`${this.baseUrl}/personagens`);
   }
 
-   voltarPersonagem(id: number, totalVotos: number) {
+  voltarPersonagem(id: number, totalVotos: number) {
 
     // Body: { "votos": NOVO_VALOR }
 
-    return this.httpClient.patch<IPersonagens[]>(`${this.baseUrl}/personagens/${id}`,{votos:totalVotos + 1});
+    return this.httpClient.patch<IPersonagens[]>(`${this.baseUrl}/personagens/${id}`, { votos: totalVotos + 1 });
 
     // const personagem = this.listarPersonagens.find(
     //   (itemLista, index, listarPersonagens) => itemLista.id === idDoPersonagem
     // )
     // personagem!.votos++;
+
+  }
+
+  metodoQualquer() {
+
+    return this.httpClient.delete(`${this.baseUrl}`).subscribe({
+      next: () => {
+        console.log("Deu certo")
+      },
+      error: () => {
+        console.log("Deu ruim")
+      },
+      complete: () => {
+        console.log("Sempre vai se  executado")
+      },
+    });
 
   }
 
