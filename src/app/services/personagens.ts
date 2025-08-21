@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
-interface IPersonagens {
+export interface IPersonagens {
   id: number;
   nome: string;
   imagem: string;
@@ -29,6 +29,10 @@ export class Personagens {
 
   getDados(): Observable<IPersonagens[]> {
     return this.httpClient.get<IPersonagens[]>(`${this.baseUrl}/personagens`);
+  }
+
+  getPersonagemPorId(id: number) {
+    return this.httpClient.get<IPersonagens>(`${this.baseUrl}/personagens/${id}`);
   }
 
   voltarPersonagem(id: number, totalVotos: number) {

@@ -1,17 +1,19 @@
 import { Routes } from '@angular/router';
 import { ListaPersonagem } from './components/lista-personagem/lista-personagem';
+import { DetalhePersonagem } from './components/detalhe-personagem/detalhe-personagem';
+
 
 export const routes: Routes = [
     {
-        path:'',
+        path: '',
         component: ListaPersonagem
     },
-      {
-        path:'/home',
+    {
+        path: 'home',
         component: ListaPersonagem
     },
-     {
-        path:'/home/:id',
-        component: ListaPersonagem
+    {
+        path: 'detalhe-personagem/:id',
+        component: DetalhePersonagem
     },
 ];
