@@ -1,14 +1,17 @@
 <div class="card">
-  <img [src]="imagem()" [alt]="nome()" />
-  <h3>{{ nome() }}</h3>
+  <a [routerLink] = "['detalhe-personagem',id()]" class="link-navegacao">
+<!-- 
+"/detalhe-personagem/${id}" -->
+
+    <img [src]="imagem()" [alt]="nome()" />
+    <h3>{{ nome() }}</h3>
+  </a>
 
   @if (totalVotos() > 0) {
   <p>Votos: {{ totalVotos() }}</p>
   } @else {
   <p class="nenhum-voto">Nenhum voto ainda</p>
   }
-
-
 
   <button (click)="votou.emit({id:id(),totalVotos:totalVotos()})">Votar</button>
 </div>

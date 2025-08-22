@@ -28,15 +28,15 @@ export class DetalhePersonagem implements OnInit {
   idPersonagem: number = 0;
   personagem?: IPersonagens;
 
-  constructor(private route: ActivatedRoute, private servico: PersonagensService) {
+  constructor(private route: ActivatedRoute, private servico: Personagens) {
   }
 
 
   ngOnInit(): void {
-    // this.idPersonagem = this.route.snapshot.paramMap.get('id') as number;
-    this.idPersonagem = Number(this.route.snapshot.paramMap.get('id'));
-    this.personagem = this.servico.getPersonagemPorId(this.idPersonagem), subscribe((personagem) => this.personagem{
-// this.
+//     this.idPersonagem = this.route.snapshot.paramMap.get('id') as number;
+//     this.idPersonagem = Number(this.route.snapshot.paramMap.get('id'));
+//     this.personagem = this.servico.getPersonagemPorId(this.idPersonagem), subscribe((personagem) => this.personagem{
+// // this.
 
     })
 

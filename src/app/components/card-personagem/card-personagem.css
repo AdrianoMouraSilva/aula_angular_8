@@ -36,4 +36,16 @@ button:hover {
    font-style: italic;
 }
 
+.link-navegacao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: #673ab7;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
 

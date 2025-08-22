@@ -1,6 +1,10 @@
 <div class="detalhe-wrapper">
+
+@if (personagem) {
+
   <h2 class="titulo">🌟 Detalhes do Personagem {{idPersonagem }}</h2>
   <div class="detalhe-conteudo">
+    <!-- <img class="imagem" [src]="personagem?.imagem" alt="imagem" /> -->
     <img class="imagem" [src]="personagem.imagem" alt="imagem" />
     <div class="info">
       <p class="nome">{{ personagem.nome }}</p>
@@ -9,4 +13,5 @@
       </p>
     </div>
   </div>
+}
 </div>
